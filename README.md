@@ -108,12 +108,15 @@ The group of rotation in 3D space is called SO(3). In SO(3), for a (2L+1)-dimens
 
 $$
 \begin{pmatrix}
-\vec{r}_1 \\
-\vec{r}_2 \\
+x_1 \\
+y_1 \\
+z_1
 \end{pmatrix}
 \otimes
 \begin{pmatrix}
-\vec{r}_1 \otimes \vec{r}_2
+x_2 \\
+y_2 \\
+z_2
 \end{pmatrix}
 =
 \begin{pmatrix}
