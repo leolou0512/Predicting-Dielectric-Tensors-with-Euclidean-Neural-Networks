@@ -146,9 +146,7 @@ c(z_1 z_2 - x_1 x_2)
 \end{pmatrix}
 $$
 
-The group formed by combining the inversion group $\mathbb{Z}_2$ with $SO(3)$ is called $O(3)$. 
-
-There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3x3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$. $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
+The group formed by combining the inversion group $\mathbb{Z}_2$ with $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3x3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$. $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
 
 In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of a type-$L_1$ vector $f^{(L_{1})}$ with a type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation:
 
@@ -156,11 +154,11 @@ $$
 \begin{equation}
     h^{(L_{3})}_{m_{3}} = (f^{(L_{1})} \otimes g^{(L_{2})})_{m_{3}} = \sum_{m_1=-L_1}^{L_1} \sum_{m_2=-L_2}^{L_2} C^{(L_{3},m_{3})}_{(L_{1},m_{1})(L_{2},m_{2})} f^{(L_{1})}_{m_{1}} g^{(L_{2})}_{m_{2}}
 \end{equation}
-
-$$
-The order $L$ of the irreps after Clebsch-Gordan decomposition can be summarised with the following equation: 
 $$
 
+The order $L$ of the irreps after Clebsch-Gordan decomposition can be summarized with the following equation: 
+
+$$
 \begin{equation}
     L_1 \otimes L_2=|L_1 - L_2|\oplus \dots \oplus (L_1 + L_2)
 \end{equation}
