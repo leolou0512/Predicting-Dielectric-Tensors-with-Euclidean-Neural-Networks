@@ -110,21 +110,14 @@ $$
 \begin{pmatrix}
 x_1 \\
 y_1 \\
-z_1 \\
+z_1 
 \end{pmatrix}
 \otimes
 \begin{pmatrix}
 x_2 \\
 y_2 \\
-z_2 \\
+z_2 
 \end{pmatrix}
-=
-\begin{pmatrix}
-x_1 x_2 & x_1 y_2 & x_1 z_2 \\
-y_1 x_2 & y_1 y_2 & y_1 z_2 \\
-z_1 x_2 & z_1 y_2 & z_1 z_2 \\
-\end{pmatrix}
-$$
 
 can be decomposed into $L=0$ part, $L=1$ part and $L=2$ part through a process called Wigner decomposition. The $L=0$ part is the trace of the 3x3 matrix with dimension of 1, this is called a scalar. The physical intuition is that when the two vector rotates, the scalar product of the two vectors will not change. The $L=1$ part is the cross product of (x1, y1, z1) and (x2, y2, z2) with dimension of 3, this is called a vector. If the two vectors are rotated, the cross product will also rotate. The $L=2$ part is the symmetric traceless part of the matrix and have a dimension of 5. This part does not have a specific name. All three representations generated from the original representation cannot be reduce anymore. The elements of these irreps are index with m, where -L <= m <= L. See below for details:
 
