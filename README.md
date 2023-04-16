@@ -82,15 +82,21 @@ A group consists of a set (G) and a binary operation that has an inverse and ide
 
 ### Equivariance and Invariance <a class="anchor" id="EandI"></a>
 Equivariance is a property of an operator that preserves the symmetry of the object under a group of transformations. A function f that maps one vector space to another (f: X → Y) is equivariant with respect to representation D^X(g) and D^Y(g) if for all group elements in a group (g ∈ G) and input (x ∈ X),
+$$
 \begin{equation}
     f(D^\mathcal{X}(g)x) = D^\mathcal{Y}(g)f(x)
 \end{equation}
+$$
 
 Invariance is a special type of equivariance, where the output remains the same before or after $f$. In atomic systems, physical properties like dielectric tensors remains the same regardless of our choice of unit cell and rotations. Comparing a material to itself after a rotation, one would expect scalar properties like energy or band gap of a material to be invariant (to remain the same), and tensorial properties such as force or dielectric tensors to be equivariant (to rotate accordingly). Equivariance is very a powerful property in materials machine learning, as the output will always be consistent, no matter the input unit cell orientation. Equivariant models don't need to learn redundantly from multiple orientations, but rather identify the general trends irrespective of the input orientation. As a result, equivariant models often demonstrates a superior ability to achieve higher accuracies given the same dataset.
 
-Due to the associativity of representations, \begin{equation}
+Due to the associativity of representations, 
+$$
+\begin{equation}
     D(g)D(h)=D(gh)
-\end{equation} For all $g,h \in G$, composing multiple equivariant transformations $g$ and $h$ will result in an equivariant transformation. The deep neural network trained in this project only consists of equivariant layers, thus the network will overall be equivariant. 
+\end{equation} 
+$$
+For all $g,h \in G$, composing multiple equivariant transformations $g$ and $h$ will result in an equivariant transformation. The deep neural network trained in this project only consists of equivariant layers, thus the network will overall be equivariant. 
 
 ### Irreducible Representations and Tensor Products <a class="anchor" id="irrep"></a>
 A representation in a vector space is irreducible if it cannot be decomposed into a concatenation of smaller and independent representations. These representations are called **ir**reducible **rep**resentations (irreps).
