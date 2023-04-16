@@ -146,8 +146,11 @@ c(z_1 z_2 - x_1 x_2)
 \end{pmatrix}
 $$
 
-The group formed by combining the inversion group $\mathbb{Z}_2$ to $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3×3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$, $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
-In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of an type-$L_1$ vector $f^{(L_{1})}$ with type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation: 
+The group formed by combining the inversion group $\mathbb{Z}_2$ with $SO(3)$ is called $O(3)$. 
+
+There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3x3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$. $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
+
+In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of a type-$L_1$ vector $f^{(L_{1})}$ with a type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation:
 
 $$
 \begin{equation}
