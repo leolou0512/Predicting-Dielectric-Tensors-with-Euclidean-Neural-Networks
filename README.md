@@ -110,19 +110,19 @@ $$
 \begin{pmatrix}
 x_1 \\
 y_1 \\
-z_1
+z_1 \\
 \end{pmatrix}
 \otimes
 \begin{pmatrix}
 x_2 \\
 y_2 \\
-z_2
+z_2 \\
 \end{pmatrix}
 =
 \begin{pmatrix}
 x_1 x_2 & x_1 y_2 & x_1 z_2 \\
 y_1 x_2 & y_1 y_2 & y_1 z_2 \\
-z_1 x_2 & z_1 y_2 & z_1 z_2
+z_1 x_2 & z_1 y_2 & z_1 z_2 \\
 \end{pmatrix}
 $$
 
