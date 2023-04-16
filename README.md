@@ -103,7 +103,7 @@ A representation in a vector space is irreducible if it cannot be decomposed int
 
 The group of rotation in 3D space is called SO(3). In SO(3), for a (2L+1)-dimensional space, there exists an irreps matrices of dimension (2L+1)-by-(2L+1), called Wigner-D matrices. The order of an irrep L can be thought of as the angular momentum, and takes a non-negative integer value. For example, in 3D space (L=1), a 3x3 representation generated from the tensor products of two vectors:
 
-$$
+$
 \begin{pmatrix}
 \vec{r}_1 \\
 \vec{r}_2 \\
@@ -119,10 +119,10 @@ x_1 x_2 & x_1 y_2 & x_1 z_2 \\
 y_1 x_2 & y_1 y_2 & y_1 z_2 \\
 z_1 x_2 & z_1 y_2 & z_1 z_2
 \end{pmatrix}
-$$
+$
 
 can be decomposed into $L=0$ part, $L=1$ part and $L=2$ part through a process called Wigner decomposition. The $L=0$ part is the trace of the 3x3 matrix with dimension of 1, this is called a scalar. The physical intuition is that when the two vector rotates, the scalar product of the two vectors will not change. The $L=1$ part is the cross product of (x1, y1, z1) and (x2, y2, z2) with dimension of 3, this is called a vector. If the two vectors are rotated, the cross product will also rotate. The $L=2$ part is the symmetric traceless part of the matrix and have a dimension of 5. This part does not have a specific name. All three representations generated from the original representation cannot be reduce anymore. The elements of these irreps are index with m, where -L <= m <= L. See below for details:
-$$
+$
 \begin{pmatrix}
 x_1 x_2 & x_1 y_2 & x_1 z_2 \\
 y_1 x_2 & y_1 y_2 & y_1 z_2 \\
@@ -140,7 +140,7 @@ c(x_1 y_2 + y_1 x_2) \\
 c(y_1 z_2 + z_1 y_2) \\
 c(z_1 z_2 - x_1 x_2)
 \end{pmatrix}
-$$
+$
 The group formed by combining the inversion group $\mathbb{Z}_2$ to $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3×3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$, $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
 In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of an type-$L_1$ vector $f^{(L_{1})}$ with type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation: 
 $$
