@@ -112,7 +112,6 @@ $$
 \vec{r}_2 \\
 \end{pmatrix}
 \otimes
-=
 \begin{pmatrix}
 \vec{r}_1 \otimes \vec{r}_2
 \end{pmatrix}
