@@ -135,7 +135,7 @@ c(y_1 z_2 + z_1 y_2) \\
 c(z_1 z_2 - x_1 x_2)
 \end{pmatrix}
 $$
-The group formed by combining the inversion group $\mathbb{Z}_2$ to $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3×3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$, $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.\par
+The group formed by combining the inversion group $\mathbb{Z}_2$ to $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3×3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$, $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
 In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of an type-$L_1$ vector $f^{(L_{1})}$ with type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation: 
 $$
 \begin{equation}
@@ -149,25 +149,36 @@ $$
 \end{equation}
 $$
 This is due to the fact that Clebsch-Gordan coefficients are only non-zero between this boundary. The previous example of combining two 3D vectors can be thought of as $1 \oplus 1=0 \oplus 1 \oplus 2$.
-The network in this project takes irreps as input, and outputs irreps. Input irreps interacts with other irreps in the network using tensor products as it propagates through the network. There are various types of tensor products in the e3nn.o3 package, such as o3.TensorProducts, o3.FullTensorProducts and o3.FullyConnectedTensorProducts. o3.FullTensorProducts creates and returns all possible combinations of the two pairs of input irreps, resulting in output irreps that are independent from each other, i.e. the outputs not mixed. The multiplicity of the outputs are the product of the multiplicity of the two parent irreps (e.g. $3\times0e \otimes 5\times0e = 15\times0e$). o3.FullyConnectedTensorProducts can be seen as o3.FullTensorProducts followed by a fully connected layer. In addition to specifying two input irreps, output irreps are required as an argument. Then for each output irrep specified, the function will create a weighted sum of all compatible irreps, the weights of which are learnable. This allows the output to have any multiplicity. \boxed{\small \text{o3.TensorProducts}} creates tensor products with parameterized paths. This function has the most flexibility, allowing users to specify multiplicity of the outputs and toggle learnable weights independently.
+The network in this project takes irreps as input, and outputs irreps. Input irreps interacts with other irreps in the network using tensor products as it propagates through the network. There are various types of tensor products in the e3nn.o3 package, such as o3.TensorProducts, o3.FullTensorProducts and o3.FullyConnectedTensorProducts. o3.FullTensorProducts creates and returns all possible combinations of the two pairs of input irreps, resulting in output irreps that are independent from each other, i.e. the outputs not mixed. The multiplicity of the outputs are the product of the multiplicity of the two parent irreps (e.g. $3\times0e \otimes 5\times0e = 15\times0e$). o3.FullyConnectedTensorProducts can be seen as o3.FullTensorProducts followed by a fully connected layer. In addition to specifying two input irreps, output irreps are required as an argument. Then for each output irrep specified, the function will create a weighted sum of all compatible irreps, the weights of which are learnable. This allows the output to have any multiplicity. \boxed{\small \text{o3.TensorProducts}} creates tensor products with parameterized paths. This function has the most flexibility, allowing users to specify multiplicity of the outputs and toggle learnable weights independently.  
+
 ### Spherical Harmonics <a class="anchor" id="sh"></a>
+
 Spherical harmonics are a set of basis functions that originates from angular part of the solution of the Laplace equation in spherical coordinates. Square-integrable functions are defined as functions that satisfies: 
+
 $$
 \begin{equation}
     \int^{2\pi}_{0} \int^{\pi}_{0} |f(\theta, \phi)|^{2} sin\theta d\theta d\phi < \infty
-\end{equation}where $\theta$ $\phi$ are polar and azimuthal angles. Any square-integrable functions on the unit sphere can be expressed as a linear combination of spherical harmonics. Euclidean vectors $\vec{r}$ in $\mathbb{R}^{3}$ can be projected into irreps using spherical harmonics. For example, the spherical harmonics for $l=1$ are: \begin{align}
+\end{equation}
+$$
+
+where $\theta$ $\phi$ are polar and azimuthal angles. Any square-integrable functions on the unit sphere can be expressed as a linear combination of spherical harmonics. Euclidean vectors $\vec{r}$ in $\mathbb{R}^{3}$ can be projected into irreps using spherical harmonics. For example, the spherical harmonics for $l=1$ are: 
+
+\begin{align}
     Y_{1,-1}(\theta,\phi) &= \sqrt{\frac{3}{8\pi}}\sin\theta e^{-i\phi}, \\
     Y_{1,0}(\theta,\phi) &= \sqrt{\frac{3}{4\pi}}\cos\theta, \\
     Y_{1,1}(\theta,\phi) &= -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi}
 \end{align}
-$$
+
 and the weight $c_{l,m}$ for each $Y_{l,m}$ can be worked out via:
+
 $$
 \begin{align}
-    c_{1,-1} = \sqrt{\frac{4\pi}{3}}\int Y_{1,-1}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi, \\
-    c_{1,0} = \sqrt{\frac{4\pi}{3}}\int Y_{1,0}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi, \\
-    c_{1,1} = \sqrt{\frac{4\pi}{3}}\int Y_{1,1}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi 
+    c_{1,-1} &= \sqrt{\frac{4\pi}{3}}\int Y_{1,-1}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi, \\
+    c_{1,0} &= \sqrt{\frac{4\pi}{3}}\int Y_{1,0}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi, \\
+    c_{1,1} &= \sqrt{\frac{4\pi}{3}}\int Y_{1,1}(\theta,\phi)^* (x,y,z) \sin\theta d\theta d\phi 
 \end{align} 
 $$
+
 where the * represents complex conjugate.
+
 Spherical harmonics possess rotational equivariance, which makes them a good choice to make up the angular part of the convolutional kernel. The convolutional kernel used in this project consists of a learned radial part and spherical harmonics angular part. Detailed explanation of convolution kernel can be found in Model Architecture section.
