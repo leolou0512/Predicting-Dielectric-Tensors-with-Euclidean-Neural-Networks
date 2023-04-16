@@ -82,6 +82,7 @@ A group consists of a set (G) and a binary operation that has an inverse and ide
 
 ### Equivariance and Invariance <a class="anchor" id="EandI"></a>
 Equivariance is a property of an operator that preserves the symmetry of the object under a group of transformations. A function f that maps one vector space to another (f: X → Y) is equivariant with respect to representation D^X(g) and D^Y(g) if for all group elements in a group (g ∈ G) and input (x ∈ X),
+
 $$
 \begin{equation}
     f(D^\mathcal{X}(g)x) = D^\mathcal{Y}(g)f(x)
@@ -91,11 +92,13 @@ $$
 Invariance is a special type of equivariance, where the output remains the same before or after $f$. In atomic systems, physical properties like dielectric tensors remains the same regardless of our choice of unit cell and rotations. Comparing a material to itself after a rotation, one would expect scalar properties like energy or band gap of a material to be invariant (to remain the same), and tensorial properties such as force or dielectric tensors to be equivariant (to rotate accordingly). Equivariance is very a powerful property in materials machine learning, as the output will always be consistent, no matter the input unit cell orientation. Equivariant models don't need to learn redundantly from multiple orientations, but rather identify the general trends irrespective of the input orientation. As a result, equivariant models often demonstrates a superior ability to achieve higher accuracies given the same dataset.
 
 Due to the associativity of representations, 
+
 $$
 \begin{equation}
     D(g)D(h)=D(gh)
 \end{equation} 
 $$
+
 For all $g,h \in G$, composing multiple equivariant transformations $g$ and $h$ will result in an equivariant transformation. The deep neural network trained in this project only consists of equivariant layers, thus the network will overall be equivariant. 
 
 ### Irreducible Representations and Tensor Products <a class="anchor" id="irrep"></a>
@@ -103,7 +106,7 @@ A representation in a vector space is irreducible if it cannot be decomposed int
 
 The group of rotation in 3D space is called SO(3). In SO(3), for a (2L+1)-dimensional space, there exists an irreps matrices of dimension (2L+1)-by-(2L+1), called Wigner-D matrices. The order of an irrep L can be thought of as the angular momentum, and takes a non-negative integer value. For example, in 3D space (L=1), a 3x3 representation generated from the tensor products of two vectors:
 
-$
+$$
 \begin{pmatrix}
 \vec{r}_1 \\
 \vec{r}_2 \\
@@ -119,10 +122,11 @@ x_1 x_2 & x_1 y_2 & x_1 z_2 \\
 y_1 x_2 & y_1 y_2 & y_1 z_2 \\
 z_1 x_2 & z_1 y_2 & z_1 z_2
 \end{pmatrix}
-$
+$$
 
 can be decomposed into $L=0$ part, $L=1$ part and $L=2$ part through a process called Wigner decomposition. The $L=0$ part is the trace of the 3x3 matrix with dimension of 1, this is called a scalar. The physical intuition is that when the two vector rotates, the scalar product of the two vectors will not change. The $L=1$ part is the cross product of (x1, y1, z1) and (x2, y2, z2) with dimension of 3, this is called a vector. If the two vectors are rotated, the cross product will also rotate. The $L=2$ part is the symmetric traceless part of the matrix and have a dimension of 5. This part does not have a specific name. All three representations generated from the original representation cannot be reduce anymore. The elements of these irreps are index with m, where -L <= m <= L. See below for details:
-$
+
+$$
 \begin{pmatrix}
 x_1 x_2 & x_1 y_2 & x_1 z_2 \\
 y_1 x_2 & y_1 y_2 & y_1 z_2 \\
@@ -140,20 +144,25 @@ c(x_1 y_2 + y_1 x_2) \\
 c(y_1 z_2 + z_1 y_2) \\
 c(z_1 z_2 - x_1 x_2)
 \end{pmatrix}
-$
+$$
+
 The group formed by combining the inversion group $\mathbb{Z}_2$ to $SO(3)$ is called $O(3)$. There are twice as many irreps in $O(3)$ since every irrep in $SO(3)$ now has an even form and an odd form. The even irreps do not change sign under parity while the odd irreps do. These irreps are denoted by $l$ followed by parity, for instance, 1e for even, 1o for odd. The dielectric tensors are symmetric 3×3 matrices, and after decomposition to irreps, we get $1 \times 0e+1 \times 2e$, $L=1$ is missing since the $L=1$ component (cross-product) is always zero for symmetric matrices.
 In the model, irreps are combined using tensor products. To calculate the $m_3$ element of a type-$L_3$ output of an type-$L_1$ vector $f^{(L_{1})}$ with type-$L_2$ vector $g^{(L_{2})}$ using tensor product, we use this equation: 
+
 $$
 \begin{equation}
     h^{(L_{3})}_{m_{3}} = (f^{(L_{1})} \otimes g^{(L_{2})})_{m_{3}} = \sum_{m_1=-L_1}^{L_1} \sum_{m_2=-L_2}^{L_2} C^{(L_{3},m_{3})}_{(L_{1},m_{1})(L_{2},m_{2})} f^{(L_{1})}_{m_{1}} g^{(L_{2})}_{m_{2}}
 \end{equation}
+
 $$
 The order $L$ of the irreps after Clebsch-Gordan decomposition can be summarised with the following equation: 
 $$
+
 \begin{equation}
     L_1 \otimes L_2=|L_1 - L_2|\oplus \dots \oplus (L_1 + L_2)
 \end{equation}
 $$
+
 This is due to the fact that Clebsch-Gordan coefficients are only non-zero between this boundary. The previous example of combining two 3D vectors can be thought of as $1 \oplus 1=0 \oplus 1 \oplus 2$.
 The network in this project takes irreps as input, and outputs irreps. Input irreps interacts with other irreps in the network using tensor products as it propagates through the network. There are various types of tensor products in the e3nn.o3 package, such as o3.TensorProducts, o3.FullTensorProducts and o3.FullyConnectedTensorProducts. o3.FullTensorProducts creates and returns all possible combinations of the two pairs of input irreps, resulting in output irreps that are independent from each other, i.e. the outputs not mixed. The multiplicity of the outputs are the product of the multiplicity of the two parent irreps (e.g. $3\times0e \otimes 5\times0e = 15\times0e$). o3.FullyConnectedTensorProducts can be seen as o3.FullTensorProducts followed by a fully connected layer. In addition to specifying two input irreps, output irreps are required as an argument. Then for each output irrep specified, the function will create a weighted sum of all compatible irreps, the weights of which are learnable. This allows the output to have any multiplicity. \boxed{\small \text{o3.TensorProducts}} creates tensor products with parameterized paths. This function has the most flexibility, allowing users to specify multiplicity of the outputs and toggle learnable weights independently.  
 
@@ -169,11 +178,13 @@ $$
 
 where $\theta$ $\phi$ are polar and azimuthal angles. Any square-integrable functions on the unit sphere can be expressed as a linear combination of spherical harmonics. Euclidean vectors $\vec{r}$ in $\mathbb{R}^{3}$ can be projected into irreps using spherical harmonics. For example, the spherical harmonics for $l=1$ are: 
 
+$$
 \begin{align}
     Y_{1,-1}(\theta,\phi) &= \sqrt{\frac{3}{8\pi}}\sin\theta e^{-i\phi}, \\
     Y_{1,0}(\theta,\phi) &= \sqrt{\frac{3}{4\pi}}\cos\theta, \\
     Y_{1,1}(\theta,\phi) &= -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi}
 \end{align}
+$$
 
 and the weight $c_{l,m}$ for each $Y_{l,m}$ can be worked out via:
 
