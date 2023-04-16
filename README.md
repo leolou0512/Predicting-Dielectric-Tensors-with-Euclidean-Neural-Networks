@@ -96,25 +96,25 @@ Due to the associativity of representations, \begin{equation}
 A representation in a vector space is irreducible if it cannot be decomposed into a concatenation of smaller and independent representations. These representations are called **ir**reducible **rep**resentations (irreps).
 
 The group of rotation in 3D space is called SO(3). In SO(3), for a (2L+1)-dimensional space, there exists an irreps matrices of dimension (2L+1)-by-(2L+1), called Wigner-D matrices. The order of an irrep L can be thought of as the angular momentum, and takes a non-negative integer value. For example, in 3D space (L=1), a 3x3 representation generated from the tensor products of two vectors:
+
 $$
-    \begin{pmatrix}
-    x_1 \\
-    y_1 \\
-    z_1
-    \end{pmatrix}
-    \otimes
-    \begin{pmatrix}
-    x_2 \\
-    y_2 \\
-    z_2
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-    x_1 x_2 & x_1 y_2 & x_1 z_2 \\
-    y_1 x_2 & y_1 y_2 & y_1 z_2 \\
-    z_1 x_2 & z_1 y_2 & z_1 z_2
-    \end{pmatrix}
+\begin{pmatrix}
+\vec{r}_1 \\
+\vec{r}_2 \\
+\end{pmatrix}
+\otimes
+=
+\begin{pmatrix}
+\vec{r}_1 \otimes \vec{r}_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+x_1 x_2 & x_1 y_2 & x_1 z_2 \\
+y_1 x_2 & y_1 y_2 & y_1 z_2 \\
+z_1 x_2 & z_1 y_2 & z_1 z_2
+\end{pmatrix}
 $$
+
 can be decomposed into $L=0$ part, $L=1$ part and $L=2$ part through a process called Wigner decomposition. The $L=0$ part is the trace of the 3x3 matrix with dimension of 1, this is called a scalar. The physical intuition is that when the two vector rotates, the scalar product of the two vectors will not change. The $L=1$ part is the cross product of (x1, y1, z1) and (x2, y2, z2) with dimension of 3, this is called a vector. If the two vectors are rotated, the cross product will also rotate. The $L=2$ part is the symmetric traceless part of the matrix and have a dimension of 5. This part does not have a specific name. All three representations generated from the original representation cannot be reduce anymore. The elements of these irreps are index with m, where -L <= m <= L. See below for details:
 $$
 \begin{pmatrix}
